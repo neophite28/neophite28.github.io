@@ -4,6 +4,40 @@
   <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
   <style>
 
+    @keyframes slideFadeIn {
+      0% {
+        transform: translateY(100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    @keyframes glitchAnimation {
+      0% {
+        opacity: 1;
+      }
+      20% {
+        opacity: 1;
+        transform: translateX(2px);
+      }
+      21% {
+        opacity: 0;
+        transform: translateX(-2px);
+      }
+      22% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      100% {
+        opacity: 1;
+      }
+    }
+    .glitch-text {
+      animation: glitchAnimation 1s infinite;
+    }
+
     .center {
       position: relative;
       display: flex;
@@ -19,6 +53,7 @@
       margin: auto; /* Thêm margin: auto để căn giữa bảng */
       background-image: linear-gradient(to right, rgba(75, 0, 130, 0.5), rgba(0, 0, 0, 0.5));
       border-radius: 50px; /* Góc bo tròn */
+      animation: slideIn 1s ease-in-out;
     }
 
     .custom-table .monitor-wrapper {
@@ -47,19 +82,29 @@
       font-size: 90px;
       position: relative;
       display: inline-block;
-      animation: move 15s infinite linear;
+      animation: move 13s infinite linear;
+      animation-delay: 0.7s;
       color: #EBB55F;
       margin: 0; /* Thêm margin: 0 để loại bỏ khoảng cách xung quanh văn bản */
     }
 
     @keyframes move {
       0% {
-        transform: translateX(100%);
+        transform: translateX(43%);
       }
       100% {
-        transform: translateX(-100%);
+        transform: translateX(-43%);
       }
     }
+    @keyframes slideIn {
+      0% {
+        transform: translateX(-100%);
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(0);
+        opacity: 1;
+      }
     }
     .custom-table.center .monitor-wrapper.center .monitor.center p {
       text-align: center;
@@ -218,6 +263,8 @@
       text-align: center;
       margin-top: 200px;
       margin-bottom: 80px;
+      animation: slideFadeIn 1s ease-in-out;
+
     }
     .header h1 {
       font-family: "Myfont", sans-serif;
@@ -373,14 +420,14 @@
       </div>
     </nav>
     <div class="header">
-      <h1>EtIKJ Music</h1>
+      <h1 class="glitch-text">EtIKJ Music</h1>
       <p>A beautiful music blogger</p>
     </div>
     <div class="center">
       <div class="custom-table center">
         <div class="monitor-wrapper center">
           <div class="monitor center">
-            <p>                   Chào mọi người đến với EtiKJ-Music - nơi "chất phát ngất" và "đỉnh đến ngất ngây"! Trang web hot nhất, siêu nhanh và "độc nhất" đấy.                   </p>
+            <p>Chào mọi người đến với EtiKJ-Music - nơi "chất phát ngất" và "đỉnh đến ngất ngây"! Trang web hot nhất, siêu nhanh và "độc nhất" đấy.</p>
           </div>
         </div>
       </div>
@@ -489,6 +536,12 @@
         }
       }, 500); // Đợi 500ms sau khi ngừng gõ để thực hiện tìm kiếm
     });
+    setInterval(function() {
+      var glitchText = document.querySelector('.glitch-text');
+      glitchText.classList.remove('glitch-text');
+      void glitchText.offsetWidth;
+      glitchText.classList.add('glitch-text');
+    }, 1000);
 
   </script>
 
