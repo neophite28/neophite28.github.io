@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+  <style>
+
+    .center {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-top: -30px;
+      z-index: 1;
+    }
+
+    .custom-table {
+      width: 910px;
+      height: 280px;
+      margin: auto; /* Thêm margin: auto để căn giữa bảng */
+      background-image: linear-gradient(to right, rgba(75, 0, 130, 0.5), rgba(0, 0, 0, 0.5));
+      border-radius: 50px; /* Góc bo tròn */
+    }
+
+    .custom-table .monitor-wrapper {
+      background: #050321;
+      width: 770px;
+      height: 140px;
+      box-shadow: 0px 2px 2px 2px rgba(0,0,0,0.30);
+      margin: auto; /* Thêm margin: auto để căn giữa .monitor-wrapper */
+      border-radius: 25px; /* Góc bo tròn */
+    }
+
+    .custom-table .monitor-wrapper .monitor {
+      width: 730px;
+      height: 100px;
+      background-color: #344151;
+      overflow: hidden;
+      white-space: nowrap;
+      box-shadow: inset 0px 5px 10px 2px rgba(0,0,0,0.3);
+      margin: auto; /* Thêm margin: auto để căn giữa .monitor */
+      background-image: linear-gradient(to right, rgba(47, 79, 79, 0.2), rgba(0, 191, 255, 0.2));
+      border-radius: 10px; /* Góc bo tròn */
+    }
+
+    .custom-table .monitor-wrapper .monitor p {
+      font-family: 'VT323', monospace;
+      font-size: 90px;
+      position: relative;
+      display: inline-block;
+      animation: move 13s infinite linear;
+      color: #EBB55F;
+      margin: 0; /* Thêm margin: 0 để loại bỏ khoảng cách xung quanh văn bản */
+    }
+
+    @keyframes move {
+      0% {
+        transform: translateX(43%);
+      }
+      100% {
+        transform: translateX(-43%);
+      }
+    }
+    }
+    .custom-table.center .monitor-wrapper.center .monitor.center p {
+      text-align: center;
+    }
+
+    @font-face {
+      font-family: "Indie+Flower";
+      src: url("DesignerVN-Photograph.ttf");
+    }
+    @font-face {
+      font-family: MyFont;
+      src: url("SVN-Sigokae.otf");
+    }
+    @font-face {
+      font-family: par;
+      src: url("SVN-Fashion.otf");
+    }
+    .slider-container {
+      position: relative;
+      overflow: hidden;
+    }
+    .shape {
+      position: absolute;
+      top: 7%;
+      left: 0;
+      width: 100%;
+      height: 80px;
+      background-color: #2F4F4F;
+      opacity: 0.7;
+      border-radius: 10px;
+      z-index: 1;
+    }
+    .slider {
+      position: relative;
+      width: 100%;
+      height: calc(100vh - 150px);
+      overflow: hidden;
+      margin-top: 100px;
+      z-index: 2;
+      border-bottom: 50px solid #006699;
+    }
+
+    .slides {
+      display: flex;
+      width: 300%; /* Đặt chiều rộng bằng tổng số slide */
+      height: 100%;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .slide {
+      flex: 0 0 33.3333%; /* Đặt kích thước slide phù hợp */
+      height: 100%;
+    }
+
+    .slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .prev,
+    .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      padding: 10px;
+      background-color: #2F4F4F;
+      color: black;
+      text-decoration: none;
+      cursor: pointer;
+      font-size: 50px;
+      opacity: 0.5;
+    }
+    .prev {
+      left: 10px;
+    }
+    .next {
+      right: 10px;
+    }
+
+    .navigation-bar {
+      display: flex;
+      align-items: center;
+    }
+    .navigation-bar a.menu-item {
+      margin-right: 10px;
+      font-size: 27px; /* Kích thước chữ lớn hơn */
+      transition: color 0.3s ease; /* Hiệu ứng chuyển đổi màu chữ */
+      color: white;
+    }
+    .navigation-bar a.menu-item:hover {
+      color: #9ACD32	; /* Màu chữ vàng khi di chuột vào */
+    }
+    .additional-icon {
+      transition: transform 0.3s ease;
+      border-radius: 50%;
+      overflow: hidden;
+    }
+    .additional-icon {
+      margin-right: 10px;
+      width: 30px;
+      height: 30px;
+    }
+    .navigation {
+      transform: scale(1.3);
+      transition: transform 0.3s ease;
+      z-index: 3;
+    }
+
+    .navigation a {
+      display: inline-block;
+      transition: transform 0.3s ease;
+    }
+
+    .navigation a:hover {
+      transform: scale(1.3);
+    }
+    .search-bar {
+      position: relative;
+      left: 0;
+      transition: left 0.3s ease;
+    }
+
+    .search-bar {
+      transition: transform 0.3s ease;
+    }
+
+    .search-bar:hover {
+      transform: translateX(-80px);
+    }
+
+    .youtube-icon {
+      transition: transform 0.3s ease;
+    }
+
+    .youtube-icon:hover {
+      transform: translateX(80);
+    }
+
+    .body {
+      margin: 0;
+      padding: 0;
+      font-family: 'par', serif;
+      font-size: 20px;
+      color: #FFFAF0;
+      text-align: left;
+      margin-left: 70px;
+      margin-right: 300px;
+      margin-top: 400px;
+      margin-bottom: 300px;
+      letter-spacing: 2px;
+
+    }
+
+    .header {
+      text-align: center;
+      margin-top: 200px;
+      margin-bottom: 80px;
+    }
+    .header h1 {
+      font-family: "Myfont", sans-serif;
+      font-size: 110px;
+      color: black;
+    }
+    .header p {
+      font-family: "Myfont", serif;
+      font-size: 25px;
+      margin-top: -105px;
+      letter-spacing: 10px;
+      color: #F5F5F5;
+    }
+
+    .navigation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      height: 65px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 20px;
+      font-family: 'Indie+Flower', cursive;
+    }
+
+    .navigation ul {
+      list-style-type: none;
+      display: flex;
+      align-items: center;
+    }
+
+    .navigation li {
+      margin-right: 50px;
+    }
+
+    .navigation a {
+      color: white;
+      text-decoration: none;
+    }
+
+    .search-bar {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-bar input[type="text"] {
+      background-color: #dddddd; /* Màu xám */
+      color: black; /* Màu chữ đen */
+      width: 200px;
+      height: 20px;
+      padding: 5px;
+      border-radius: 5px;
+      border: none;
+      margin-right: 100px;
+      font-weight: bold;
+    }
+
+    .youtube-icon {
+      display: flex;
+      align-items: center;
+    }
+
+    .youtube-icon a {
+      margin-right: 50px;
+    }
+    #video-background {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      z-index: -1;
+    }
+    .container {
+      position: relative;
+    }
+
+    $blue: #000080;
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    .text-shadow {
+      text-transform: uppercase;
+      color: transparent;
+      -webkit-text-stroke: #FFDEAD;
+      -webkit-text-stroke-width: 1px;
+      text-shadow: 2px 2px 10px $blue;
+      transition: all 0.5s ease-in-out;
+      text-align: center;
+      letter-spacing: 0.2em;
+      animation: flicker 0.5s ease-in-out infinite alternate;
+
+      &:hover {
+        color: #fff;
+      }
+    }
+
+    @keyframes flicker {
+      0% {
+        opacity: 0.5;
+        text-shadow: 2px 2px 10px $blue;
+      }
+      100% {
+        opacity: 1;
+        text-shadow: 2px 2px 20px $blue;
+      }
+    }
+    hi1 {
+      margin: 0;
+      color: #000080;
+      height: 40vh;
+      display: flex;
+      margin: auto;
+      font-size: 3.5rem;
+      font-weight: 400;
+      animation: lights 5s 750ms linear infinite;
+      @media (max-width: 768px) {
+      	font-size: 1.3em;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <nav class="navigation">
+      <div class="youtube-icon">
+        <a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube-play"></i><img height="20" src="youtube-icon.png" alt="YouTube"></a>
+        <a href="https://www.youtube.com/channel/UCoULs2N7-Fjalzyl6dHbkEg" target="_blank">
+          <div class="additional-icon">
+            <img height="25" src="https://lh3.googleusercontent.com/a/ACg8ocJ7GQgdn4aZhIU6E8jDwUS-Loobgj1oqgR3elGLN2H8SpM=s288-c-no" alt="Additional Icon">
+          </div>
+        </a>
+        <a href="https://www.youtube.com/" target="_blank"><i class="fa fa-youtube-play"></i><img height="20" src="youtube-icon.png" alt="YouTube"></a>
+      </div>
+      <div class="navigation-bar">
+        <ul>
+          <li><a href="#home" class="menu-item">Trang chủ</a></li>
+          <li><a href="#list" class="menu-item">Danh sách</a></li>
+          <li><a href="#article" class="menu-item">Bài viết</a></li>
+          <li><a href="#about" class="menu-item">\Về chúng tôi</a></li>
+        </ul>
+      </div>
+      <div class="search-bar">
+        <input type="text" id="searchInput" placeholder="Tìm kiếm cmm...">
+      </div>
+    </nav>
+    <div class="header">
+      <h1>EtIKJ Music</h1>
+      <p>A beautiful music blogger</p>
+    </div>
+    <div class="center">
+      <div class="custom-table center">
+        <div class="monitor-wrapper center">
+          <div class="monitor center">
+            <p>Chào mọi người đến với EtiKJ-Music - nơi "chất phát ngất" và "đỉnh đến ngất ngây"! Trang web hot nhất, siêu nhanh và "độc nhất" đấy.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="slider-container">
+      <div class="shape"></div>
+      <div class="slider">
+        <div class="slides">
+          <div class="slide">
+            <img src="https://wallpapercave.com/wp/wp7575144.jpg">
+          </div>
+          <div class="slide">
+            <img src="https://live.staticflickr.com/7604/16756907800_34c0b60b17_h.jpg">
+          </div>
+          <div class="slide">
+            <img src="https://wallpapercave.com/wp/wp5170605.jpg">
+          </div>
+        </div>
+        <a class="prev" href="#">&#8249;</a>
+        <a class="next" href="#">&#8250;</a>
+      </div>
+    </div>
+  </div>
+  <video id="video-background" autoplay muted loop>
+    <source src="skybg.mp4" type="video/mp4">
+    <!-- Thêm các định dạng video khác tại đây nếu cần -->
+  </video>
+
+
+
+  <script>
+    const navigation = document.querySelector('.navigation');
+    const searchBar = document.querySelector('.search-bar');
+    const youtubeIcon = document.querySelector('.youtube-icon');
+
+    navigation.addEventListener('mouseover', () => {
+      navigation.style.transform = 'scale(1.3)';
+    });
+
+    navigation.addEventListener('mouseout', () => {
+      navigation.style.transform = 'scale(1)';
+    });
+
+    searchBar.addEventListener('mouseenter', () => {
+      searchBar.style.transform = 'translateX(-80px)';
+    });
+
+    searchBar.addEventListener('mouseleave', () => {
+      searchBar.style.transform = 'translateX(0)';
+    });
+
+    youtubeIcon.addEventListener('mouseenter', () => {
+      youtubeIcon.style.transform = 'translateX(80px)';
+    });
+
+    youtubeIcon.addEventListener('mouseleave', () => {
+      youtubeIcon.style.transform = 'translateX(0)';
+    });
+    var slider = document.querySelector('.slider');
+    var slides = document.querySelector('.slides');
+    var prevBtn = document.querySelector('.prev');
+    var nextBtn = document.querySelector('.next');
+    var slideWidth = slider.clientWidth;
+    var slideCount = slides.childElementCount;
+    var slideIndex = 0;
+    function slideToNext() {
+      event.preventDefault();
+      if (slideIndex < slideCount - 1) {
+        slideIndex++;
+      } else {
+        slideIndex = 0;
+      }
+      slides.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
+    }
+    function slideToPrev() {
+      event.preventDefault();
+      if (slideIndex > 0) {
+        slideIndex--;
+      } else {
+        slideIndex = slideCount - 1;
+      }
+      slides.style.transform = `translateX(-${slideWidth * slideIndex}px)`;
+    }
+    nextBtn.addEventListener('click', slideToNext);
+    prevBtn.addEventListener('click', slideToPrev);
+
+    var searchInput = document.getElementById('searchInput');
+
+    // Lấy các phần tử cần sử dụng
+    var searchInput = document.getElementById('searchInput');
+    var searchTimeout;
+
+    // Xử lý sự kiện khi nhập vào ô tìm kiếm
+    searchInput.addEventListener('input', function() {
+      clearTimeout(searchTimeout); // Xóa timeout trước đó nếu có
+
+      var searchText = searchInput.value;
+
+      searchTimeout = setTimeout(function() {
+        // Sử dụng window.find() để tìm kiếm và di chuyển đến nội dung trên trang web
+        if (window.find && searchText !== '') {
+          var result = window.find(searchText, false, false, true, false, true, false);
+          if (!result) {
+            alert('Không tìm thấy nội dung.');
+          }
+        }
+      }, 500); // Đợi 500ms sau khi ngừng gõ để thực hiện tìm kiếm
+    });
+
+  </script>
+
+  <div class="body">
+    <hi1 class="text-shadow" id="home"><br><br>Trang chủ</hi1>
+    <p>Chào mọi người đến với EtiKJ-Music - nơi "chất phát ngất" và "đỉnh đến ngất ngây"! Trang web hot nhất, siêu nhanh và "độc nhất" đấy.</p>
+    <p>Tại đây, bạn sẽ khám phá những bài hát chill và lời rap "đỉnh đến mê mẩn". Với những bản "parody" "thốn" và beat "đốt não" kèm lời bình "độc đáo". Chuẩn bị tinh thần cho mấy tràng cười "phá cả lỗ đít" và những giai điệu khiến bạn "làm xiếc" không ngừng.</p>
+    <p>EtiKJ-Music dành cho những "nhịp điệu" yêu nhạc và những con "mê vui". Hãy "check-in" ngay EtiKJ-Music và trải nghiệm chuyến phiêu lưu âm nhạc "chất phát ngất" và "cháy"!</p>
+
+    <hi1 class="text-shadow" id="list"><br><br>Danh sách</hi1>
+    <ul>
+      <li>"Shape of You" - Ed Sheeran</li>
+      <li>"Bohemian Rhapsody" - Queen</li>
+      <li>"Hey Jude" - The Beatles</li>
+      <li>"Rolling in the Deep" - Adele</li>
+      <li>"Hotel California" - Eagles</li>
+      <li>"Imagine" - John Lennon</li>
+      <li>"Smells Like Teen Spirit" - Nirvana</li>
+      <li>"Thriller" - Michael Jackson</li>
+      <li>"Billie Jean" - Michael Jackson</li>
+      <li>"Like a Rolling Stone" - Bob Dylan</li>
+      <li>"Wonderwall" - Oasis</li>
+      <li>"Sweet Child o' Mine" - Guns N' Roses</li>
+      <li>"Stairway to Heaven" - Led Zeppelin</li>
+      <li>"Boys Don't Cry" - The Cure</li>
+      <li>"Hallelujah" - Leonard Cohen</li>
+      <li>"Uptown Funk" - Mark Ronson ft. Bruno Mars</li>
+      <li>"Don't Stop Believin'" - Journey</li>
+      <li>"Hey Ya!" - OutKast</li>
+      <li>"Dancing Queen" - ABBA</li>
+      <li>"Hotline Bling" - Drake</li>
+    </ul>
+
+    <hi1 class="text-shadow" id="article"><br><br>Bài viết</hi1>
+    <p>Chào zời! Đến với kênh YouTube EtiKJ-Music, nơi xả stress và phê pha cùng những hit nhạc hot trend đỉnh cao! Với vietsub nhạc đỉnh lắm chất, bạn sẽ hiểu rõ lời bài hát vàcảm nhận đầy tưng bừng. Ghé qua kênh ngay để trải nghiệm những bài nhạc đang gây sốt, đảm bảo đập tim và sặc phôi pha!</p>
+
+    <hi1 class="text-shadow" id="about"><br><br>Về chúng tôi</hi1>
+    <p>Vậy là chúng ta đã tới cuối trang "About Us" rồi! Cám ơn bạn đã kiên nhẫn đọc tới đây, chúng tôi khá ngạc nhiên vì không biết bạn có quá nhiều thời gian rảnh hay không. Nhưng không sao, vì chúng tôi cũng có rất nhiều thời gian rảnh để mang đến cho bạn những trải nghiệm âm nhạc thú vị và những giây phút giải trí đầy vui vẻ.</p>
+  </div>
+
+</body>
+</html>
